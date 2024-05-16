@@ -1,0 +1,54 @@
+type: specs.openrewrite.org/v1beta/style
+name: settingdust.Style
+styleConfigs:
+  - org.openrewrite.java.style.TabsAndIndentsStyle:
+      indentSize: 4
+      continuationIndent: 4
+  - org.openrewrite.kotlin.style.TabsAndIndentsStyle:
+      indentSize: 4
+      continuationIndent:
+  - org.openrewrite.kotlin.style.WrappingAndBracesStyle.ExtendsImplementsPermitsList:
+      extendsImplementsPermitsList:
+        alignWhenMultiline: true
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: settingdust.Recipes
+description: ""
+recipeList:
+  - org.openrewrite.java.migrate.UpgradeToJava21
+  - settingdust.KotlinFormat
+  - settingdust.JavaFormat
+  - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  - org.openrewrite.staticanalysis.CodeCleanup
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: settingdust.KotlinFormat
+displayName: Format Kotlin code
+description: ""
+recipeList:
+  - org.openrewrite.kotlin.format.AutoFormat
+  - org.openrewrite.kotlin.cleanup.RemoveTrailingComma
+  - org.openrewrite.kotlin.cleanup.UnnecessaryTypeParentheses
+  - org.openrewrite.kotlin.cleanup.RemoveTrailingSemicolon
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: settingdust.JavaFormat
+displayName: Format Java code
+description: ""
+recipeList:
+  - org.openrewrite.java.format.AutoFormat
+  - org.openrewrite.java.RemoveObjectsIsNull
+  - org.openrewrite.java.format.MethodParamPad
+  - org.openrewrite.java.format.NoWhitespaceAfter
+  - org.openrewrite.java.format.NormalizeLineBreaks
+  - org.openrewrite.java.format.NormalizeTabsOrSpaces
+  - org.openrewrite.java.format.OperatorWrap
+  - org.openrewrite.java.format.RemoveTrailingWhitespace
+  - org.openrewrite.java.format.SingleLineComments
+  - org.openrewrite.java.format.Spaces
+  - org.openrewrite.java.format.TabsAndIndents
+  - org.openrewrite.java.format.TypecastParenPad
+  - org.openrewrite.java.format.WrappingAndBraces
+  - org.openrewrite.java.OrderImports

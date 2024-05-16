@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "data-generator",
+  "version": "0.0.0",
+  "name": "Data Generator",
+  "entrypoints": {
+    "fabric-datagen": [
+      {
+        "adapter": "kotlin",
+        "value": "DataGenerator"
+      }
+    ]
+  }
+}
