@@ -40,7 +40,7 @@ dependencies {
 
     modRuntimeOnly(catalog.modernfix)
 
-    modImplementation(catalog.worldgen.profiling)
+//    modImplementation(catalog.worldgen.profiling)
     modImplementation(catalog.worldgen.devtools)
     modImplementation(catalog.patched)
     modImplementation(catalog.moreDensityFunctions)

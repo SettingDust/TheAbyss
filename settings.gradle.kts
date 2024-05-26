@@ -98,9 +98,9 @@ dependencyResolutionManagement.versionCatalogs.create("catalog") {
             "maven.modrinth",
             "world-preview",
         )
-        .version("1.2.2")
+        .version("1.2.2-fabric,1.20.6")
 }
 
 plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0" }
 
-rootProject.name = "DatapackGeneratorTemplate"
+rootProject.name = "TheAbyss"
