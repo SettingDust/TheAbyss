@@ -1,0 +1,6 @@
+{
+  "type": "the_abyss:clamp",
+  "input": "the_abyss:oath/continents/transformed",
+  "min": "the_abyss:oath/continents/clamp/min",
+  "max": "the_abyss:oath/continents/clamp/max"
+}

@@ -59,7 +59,7 @@
     },
     "continents": "the_abyss:oath/continents",
     "erosion": "minecraft:overworld/erosion",
-    "depth": "the_abyss:oath/params/depth",
+    "depth": "the_abyss:oath/depth",
     "ridges": "minecraft:overworld/ridges",
     "initial_density_without_jaggedness": {
       "type": "minecraft:add",
@@ -103,10 +103,10 @@
                         "type": "minecraft:quarter_negative",
                         "argument": {
                           "type": "minecraft:mul",
-                          "argument1": "the_abyss:oath/params/depth",
+                          "argument1": "the_abyss:oath/depth",
                           "argument2": {
                             "type": "minecraft:cache_2d",
-                            "argument": "the_abyss:oath/params/factor"
+                            "argument": "the_abyss:oath/factor"
                           }
                         }
                       }

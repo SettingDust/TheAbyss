@@ -1,14 +1,23 @@
 {
-  "schemaVersion": 1,
-  "id": "data-generator",
-  "version": "0.0.0",
-  "name": "Data Generator",
-  "entrypoints": {
-    "fabric-datagen": [
-      {
-        "adapter": "kotlin",
-        "value": "DataGenerator"
-      }
+    "schemaVersion": 1,
+    "id": "data-generator",
+    "version": "0.0.0",
+    "name": "Data Generator",
+    "entrypoints": {
+        "main": [
+            {
+                "adapter": "kotlin",
+                "value": "settingdust.the_abyss.EntrypointKt::init"
+            }
+        ],
+        "fabric-datagen": [
+            {
+                "adapter": "kotlin",
+                "value": "settingdust.the_abyss.DataGenerator"
+            }
+        ]
+    },
+    "mixins": [
+        "the_abyss.mixins.json"
     ]
-  }
 }

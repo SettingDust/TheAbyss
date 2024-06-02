@@ -14,6 +14,8 @@ version = semver.semVersion.toString()
 
 allprojects { apply(plugin = catalog.plugins.fabric.loom.get().pluginId) }
 
+loom { mixin { add("main", "the_abyss.refmap.json") } }
+
 fabricApi { configureDataGeneration() }
 
 rewrite {
@@ -40,7 +42,6 @@ dependencies {
 
     modRuntimeOnly(catalog.modernfix)
 
-//    modImplementation(catalog.worldgen.profiling)
     modImplementation(catalog.worldgen.devtools)
     modImplementation(catalog.patched)
     modImplementation(catalog.moreDensityFunctions)

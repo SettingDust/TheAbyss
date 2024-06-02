@@ -1,0 +1,9 @@
+{
+  "type": "add",
+  "argument1": "the_abyss:oath/continents/offset",
+  "argument2": {
+    "type": "mul",
+    "argument1": "minecraft:overworld/continents",
+    "argument2": "the_abyss:oath/continents/scale"
+  }
+}

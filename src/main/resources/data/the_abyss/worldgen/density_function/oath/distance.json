@@ -1,0 +1,7 @@
+{
+  "type": "flat_cache",
+  "argument": {
+    "type": "the_abyss:distance",
+    "max": 200
+  }
+}

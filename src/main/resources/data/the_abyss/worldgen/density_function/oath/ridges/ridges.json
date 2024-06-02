@@ -1,0 +1,9 @@
+{
+  "type": "add",
+  "argument1": 0,
+  "argument2": {
+    "type": "mul",
+    "argument1": "minecraft:overworld/ridges",
+    "argument2": 1
+  }
+}

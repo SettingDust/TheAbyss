@@ -68,6 +68,14 @@ dependencyResolutionManagement.versionCatalogs.create("catalog") {
         )
         .version("1.0.0+$minecraft")
 
+    // https://modrinth.com/mod/worldgen-helpers/versions
+    library(
+        "worldgen-helpers",
+        "maven.modrinth",
+        "worldgen-helpers",
+    )
+        .version("1.1.0+1.20.4")
+
     // https://modrinth.com/mod/more-density-functions/versions
     library(
             "moreDensityFunctions",

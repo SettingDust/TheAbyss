@@ -37,27 +37,7 @@
                   "argument2": {
                     "type": "minecraft:add",
                     "argument1": 0.078125,
-                    "argument2": {
-                      "type": "minecraft:range_choice",
-                      "input": "the_abyss:oath/params/sloped_cheese",
-                      "min_inclusive": -1000000,
-                      "max_exclusive": 1.5625,
-                      "when_in_range": "the_abyss:oath/params/sloped_cheese",
-                      "when_out_of_range": {
-                        "type": "minecraft:clamp",
-                        "input": {
-                          "type": "minecraft:add",
-                          "argument1": 1.5,
-                          "argument2": {
-                            "type": "minecraft:mul",
-                            "argument1": -0.64,
-                            "argument2": "the_abyss:oath/params/sloped_cheese"
-                          }
-                        },
-                        "min": 0,
-                        "max": 0.5
-                      }
-                    }
+                    "argument2": "the_abyss:oath/sloped_cheese"
                   }
                 }
               }
