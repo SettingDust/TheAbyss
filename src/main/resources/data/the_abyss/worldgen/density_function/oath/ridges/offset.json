@@ -5,22 +5,22 @@
     "points": [
       {
         "location": 0,
-        "value": 0.09166666666,
+        "value": 0.025,
         "derivative": 0
       },
       {
-        "location": 0.425,
-        "value": 0.34999999999,
+        "location": 0.3125,
+        "value": 0.0833,
         "derivative": 1
       },
       {
-        "location": 0.525,
+        "location": 0.46875,
         "value": 0.61666666666,
         "derivative": 0
       },
       {
-        "location": 0.425,
-        "value": 0.34999999999,
+        "location": 0.75,
+        "value": 0.066666,
         "derivative": 1
       },
       {
