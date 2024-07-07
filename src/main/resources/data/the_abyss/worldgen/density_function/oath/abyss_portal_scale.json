@@ -1,0 +1,23 @@
+{
+  "type": "spline",
+  "spline": {
+    "coordinate": "the_abyss:oath/distance",
+    "points": [
+      {
+        "location": 0,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": 0.312,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": 0.312,
+        "value": 1,
+        "derivative": 0
+      }
+    ]
+  }
+}

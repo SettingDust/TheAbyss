@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier
 object TheAbyss {
     const val ID: String = "the_abyss"
 
-    fun id(path: String) = Identifier(ID, path)
+    fun id(path: String) = Identifier.of(ID, path)
 }
 
 fun init() {

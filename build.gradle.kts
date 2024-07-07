@@ -1,16 +1,22 @@
+import groovy.lang.Closure
+
 plugins {
     alias(catalog.plugins.kotlin.jvm)
     alias(catalog.plugins.kotlin.plugin.serialization)
 
-    alias(catalog.plugins.semver)
-    alias(catalog.plugins.rewrite)
+    alias(catalog.plugins.git.version)
 
     alias(catalog.plugins.fabric.loom)
+
+    alias(catalog.plugins.explosion)
 }
+
+apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/gradle_issue_15754.gradle.kts")
 
 group = "settingdust"
 
-version = semver.semVersion.toString()
+val gitVersion: Closure<String> by extra
+version = gitVersion()
 
 allprojects { apply(plugin = catalog.plugins.fabric.loom.get().pluginId) }
 
@@ -18,23 +24,11 @@ loom { mixin { add("main", "the_abyss.refmap.json") } }
 
 fabricApi { configureDataGeneration() }
 
-rewrite {
-    activeStyle("settingdust.Style")
-    activeRecipe("settingdust.Recipes")
-}
-
-repositories {
-    maven("https://api.modrinth.com/maven") { content { includeGroup("maven.modrinth") } }
-    mavenCentral()
-}
+kotlin { jvmToolchain(21) }
 
 dependencies {
-    minecraft(catalog.minecraft)
-    mappings(variantOf(catalog.yarn) { classifier("v2") })
-
-    rewrite(catalog.rewrite.kotlin)
-    rewrite(catalog.rewrite.static.analysis)
-    rewrite(catalog.rewrite.migrate.java)
+    minecraft(catalog.minecraft.fabric)
+    mappings(variantOf(catalog.mapping.yarn) { classifier("v2") })
 
     modImplementation(catalog.fabric.loader)
     modImplementation(catalog.fabric.api)
@@ -44,8 +38,10 @@ dependencies {
 
     modImplementation(catalog.worldgen.devtools)
     modImplementation(catalog.patched)
-    modImplementation(catalog.moreDensityFunctions)
     modRuntimeOnly(catalog.worldPreview)
-}
 
-kotlin { jvmToolchain(21) }
+    modRuntimeOnly(catalog.distanthorizons)
+    modRuntimeOnly(explosion.fabric(catalog.iris))
+    modRuntimeOnly(catalog.sodium)
+    modRuntimeOnly(catalog.indium)
+}
