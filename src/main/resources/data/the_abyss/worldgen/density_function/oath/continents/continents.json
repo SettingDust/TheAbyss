@@ -1,6 +1,9 @@
 {
-  "type": "the_abyss:clamp",
-  "input": "the_abyss:oath/continents/transformed",
-  "min": "the_abyss:oath/continents/clamp/min",
-  "max": "the_abyss:oath/continents/clamp/max"
+  "type": "mul",
+  "argument1": "the_abyss:oath/continents/scale",
+  "argument2": {
+    "type": "add",
+    "argument1": "minecraft:overworld/continents",
+    "argument2": "the_abyss:oath/continents/offset"
+  }
 }

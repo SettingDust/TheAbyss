@@ -2,6 +2,6 @@
   "type": "cache_2d",
   "argument": {
     "type": "the_abyss:distance",
-    "max": 200
+    "max": 500
   }
 }
