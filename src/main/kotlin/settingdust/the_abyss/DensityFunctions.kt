@@ -44,8 +44,7 @@ data class Distance(val max: Double, val min: Double = 0.0) : DensityFunction.Ba
                             .forGetter(Distance::max),
                         Codec.doubleRange(0.0, 1000000000.0)
                             .optionalFieldOf("min", 0.0)
-                            .forGetter(Distance::min)
-                    )
+                            .forGetter(Distance::min))
                     .apply(instance, ::Distance)
             }
         private val CODEC_HOLDER: CodecHolder<Distance> = CodecHolder.of(CODEC)
@@ -101,8 +100,7 @@ data class Lerp(
                     .group(
                         DensityFunction.FUNCTION_CODEC.fieldOf("value1").forGetter(Lerp::value1),
                         DensityFunction.FUNCTION_CODEC.fieldOf("value2").forGetter(Lerp::value2),
-                        DensityFunction.FUNCTION_CODEC.fieldOf("alpha").forGetter(Lerp::alpha)
-                    )
+                        DensityFunction.FUNCTION_CODEC.fieldOf("alpha").forGetter(Lerp::alpha))
                     .apply(instance, ::Lerp)
             }
         private val CODEC_HOLDER: CodecHolder<out DensityFunction> = CodecHolder.of(CODEC)
@@ -148,10 +146,59 @@ data class Clamp(
                     .group(
                         DensityFunction.FUNCTION_CODEC.fieldOf("input").forGetter(Clamp::input),
                         DensityFunction.FUNCTION_CODEC.fieldOf("min").forGetter { it.minValue },
-                        DensityFunction.FUNCTION_CODEC.fieldOf("max").forGetter { it.maxValue }
-                    )
+                        DensityFunction.FUNCTION_CODEC.fieldOf("max").forGetter { it.maxValue })
                     .apply(instance, ::Clamp)
             }
         val CODEC_HOLDER: CodecHolder<Clamp> = CodecHolder.of(CODEC)
+    }
+}
+
+data class Compare(
+    val argument1: DensityFunction,
+    val argument2: DensityFunction,
+    val gte: DensityFunction,
+    val lt: DensityFunction
+) : DensityFunction {
+    override fun sample(pos: DensityFunction.NoisePos): Double {
+        return if (argument1.sample(pos) >= argument2.sample(pos)) gte.sample(pos)
+        else lt.sample(pos)
+    }
+
+    override fun fill(densities: DoubleArray, applier: DensityFunction.EachApplier) {
+        argument1.fill(densities, applier)
+
+        for (i in densities.indices) {
+            densities[i] = sample(applier.at(i))
+        }
+    }
+
+    override fun apply(visitor: DensityFunctionVisitor): DensityFunction {
+        return Compare(
+            argument1.apply(visitor),
+            argument2.apply(visitor),
+            gte.apply(visitor),
+            lt.apply(visitor))
+    }
+
+    override fun minValue() = lt.minValue()
+
+    override fun maxValue() = gte.maxValue()
+
+    override fun getCodecHolder() = CODEC_HOLDER
+
+    companion object {
+        val CODEC: MapCodec<Compare> =
+            RecordCodecBuilder.mapCodec { instance ->
+                instance
+                    .group(
+                        DensityFunction.FUNCTION_CODEC.fieldOf("argument1")
+                            .forGetter(Compare::argument1),
+                        DensityFunction.FUNCTION_CODEC.fieldOf("argument2")
+                            .forGetter(Compare::argument2),
+                        DensityFunction.FUNCTION_CODEC.fieldOf("gte").forGetter(Compare::gte),
+                        DensityFunction.FUNCTION_CODEC.fieldOf("lt").forGetter(Compare::lt))
+                    .apply(instance, ::Compare)
+            }
+        val CODEC_HOLDER: CodecHolder<Compare> = CodecHolder.of(CODEC)
     }
 }

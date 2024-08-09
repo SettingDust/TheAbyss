@@ -14,4 +14,5 @@ fun init() {
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("distance"), Distance.CODEC)
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("lerp"), Lerp.CODEC)
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("clamp"), Clamp.CODEC)
+    Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("compare"), Compare.CODEC)
 }
