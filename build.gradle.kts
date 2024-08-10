@@ -39,9 +39,4 @@ dependencies {
     modImplementation(catalog.worldgen.devtools)
     modImplementation(catalog.patched)
     modRuntimeOnly(catalog.worldPreview)
-
-    modRuntimeOnly(catalog.distanthorizons)
-    modRuntimeOnly(explosion.fabric(catalog.iris))
-    modRuntimeOnly(catalog.sodium)
-    modRuntimeOnly(catalog.indium)
 }

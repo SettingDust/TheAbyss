@@ -1,33 +1,11 @@
 {
-  "type": "spline",
-  "spline": {
-    "coordinate": "the_abyss:oath/distance",
-    "points": [
-      {
-        "location": 0,
-        "value": 0.0833,
-        "derivative": 0
-      },
-      {
-        "location": 0.3125,
-        "value": 0.0833,
-        "derivative": 1
-      },
-      {
-        "location": 0.46875,
-        "value": 0.61666666666,
-        "derivative": 0
-      },
-      {
-        "location": 0.75,
-        "value": 0.066666,
-        "derivative": 1
-      },
-      {
-        "location": 1,
-        "value": 0,
-        "derivative": 0
-      }
-    ]
-  }
+    "type": "the_abyss:compare",
+    "argument1": "minecraft:overworld/ridges",
+    "argument2": 0,
+    "gte": "the_abyss:oath/ridges/abs_offset",
+    "lt": {
+        "type": "mul",
+        "argument1": -1,
+        "argument2": "the_abyss:oath/ridges/abs_offset"
+    }
 }

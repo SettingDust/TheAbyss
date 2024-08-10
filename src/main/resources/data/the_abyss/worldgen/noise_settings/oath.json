@@ -55,7 +55,7 @@
     "continents": "the_abyss:oath/continents",
     "erosion": "minecraft:overworld/erosion",
     "depth": "the_abyss:oath/depth",
-    "ridges": "minecraft:overworld/ridges",
+    "ridges": "the_abyss:oath/ridges",
     "initial_density_without_jaggedness": "the_abyss:oath/initial_density_without_jaggedness",
     "final_density": "the_abyss:oath/final_density",
     "vein_toggle": 1,

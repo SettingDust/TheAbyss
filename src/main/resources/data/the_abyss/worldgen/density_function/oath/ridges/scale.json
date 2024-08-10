@@ -4,47 +4,22 @@
     "coordinate": "the_abyss:oath/distance",
     "points": [
       {
-        "location": 0,
-        "value": 0.025,
+        "location": 0.2,
+        "value": 0.033333,
         "derivative": 0
       },
       {
-        "location": 0.3125,
-        "value": 0.025,
+        "location": 0.3,
+        "value": 0.533333,
         "derivative": 0
       },
       {
-        "location": 0.3125,
-        "value": 0.0416,
+        "location": 0.48,
+        "value": 0.175,
         "derivative": 0
       },
       {
-        "location": 0.46875,
-        "value": 0.0416,
-        "derivative": 0
-      },
-      {
-        "location": 0.46875,
-        "value": 0.05,
-        "derivative": 0
-      },
-      {
-        "location": 0.75,
-        "value": 0.05,
-        "derivative": 0
-      },
-      {
-        "location": 0.75,
-        "value": 0.066666,
-        "derivative": 0
-      },
-      {
-        "location": 1,
-        "value": 0.066666,
-        "derivative": 0
-      },
-      {
-        "location": 1,
+        "location": 0.6,
         "value": 1,
         "derivative": 0
       }
