@@ -1,5 +1,5 @@
 {
   "type": "mul",
-  "argument1": 1,
+  "argument1": "the_abyss:oath/abyss_portal_scale",
   "argument2": "the_abyss:oath/final_density/overworld"
 }

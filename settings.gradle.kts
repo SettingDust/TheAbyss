@@ -91,15 +91,6 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
         "indium",
     )
         .version("1.0.33+mc$minecraft")
-
-
-    // https://modrinth.com/mod/indium/versions
-    library(
-        "indium",
-        "maven.modrinth",
-        "indium",
-    )
-        .version("1.0.33+mc$minecraft")
 }
 
 plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0" }
