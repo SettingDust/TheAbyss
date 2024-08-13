@@ -1,23 +1,35 @@
 {
     "schemaVersion": 1,
-    "id": "data-generator",
-    "version": "0.0.0",
-    "name": "Data Generator",
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "description": "${description}",
+    "authors": [
+        "${author}"
+    ],
+    "contact": {
+        "homepage": "${source}",
+        "sources": "${source}",
+        "issues": "${source}/issues"
+    },
+    "license": "MIT",
+    "icon": "assets/${id}/icon.png",
+    "environment": "*",
     "entrypoints": {
         "main": [
             {
                 "adapter": "kotlin",
-                "value": "settingdust.the_abyss.EntrypointKt::init"
+                "value": "${group}.EntrypointKt::init"
             }
         ],
         "fabric-datagen": [
             {
                 "adapter": "kotlin",
-                "value": "settingdust.the_abyss.DataGenerator"
+                "value": "${group}.DataGenerator"
             }
         ]
     },
     "mixins": [
-        "the_abyss.mixins.json"
+        "$id.mixins.json"
     ]
 }
