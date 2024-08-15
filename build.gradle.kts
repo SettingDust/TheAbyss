@@ -29,7 +29,7 @@ loom { mixin { add("main", "$id.refmap.json") } }
 
 fabricApi { configureDataGeneration() }
 
-kotlin { jvmToolchain(21) }
+kotlin { jvmToolchain(17) }
 
 dependencies {
     minecraft(catalog.minecraft.fabric)
