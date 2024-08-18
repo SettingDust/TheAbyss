@@ -1,28 +1,31 @@
 {
-    "type": "spline",
-    "spline": {
-        "coordinate": "the_abyss:oath/distance",
-        "points": [
-            {
-                "location": 0.2,
-                "value": 0.05,
-                "derivative": 0
-            },
-            {
-                "location": 0.3,
-                "value": 0.666666,
-                "derivative": 0
-            },
-            {
-                "location": 0.48,
-                "value": 0.05,
-                "derivative": 0
-            },
-            {
-                "location": 0.6,
-                "value": 0,
-                "derivative": 0
-            }
-        ]
+    "type": "cache_2d",
+    "argument": {
+        "type": "spline",
+        "spline": {
+            "coordinate": "the_abyss:oath/distance",
+            "points": [
+                {
+                    "location": 0.2,
+                    "value": 0.05,
+                    "derivative": 0
+                },
+                {
+                    "location": 0.3,
+                    "value": 0.666666,
+                    "derivative": 0
+                },
+                {
+                    "location": 0.48,
+                    "value": 0.05,
+                    "derivative": 0
+                },
+                {
+                    "location": 0.6,
+                    "value": 0,
+                    "derivative": 0
+                }
+            ]
+        }
     }
 }

@@ -165,10 +165,17 @@ data class Compare(
     }
 
     override fun fill(densities: DoubleArray, applier: DensityFunction.EachApplier) {
-        argument1.fill(densities, applier)
+        val arguments1 = DoubleArray(densities.size)
+        val arguments2 = DoubleArray(densities.size)
+        argument1.fill(arguments1, applier)
+        argument2.fill(arguments2, applier)
 
         for (i in densities.indices) {
-            densities[i] = sample(applier.at(i))
+            if (arguments1[i] >= arguments2[i]) {
+                densities[i] = gte.sample(applier.at(i))
+            } else {
+                densities[i] = lt.sample(applier.at(i))
+            }
         }
     }
 
@@ -200,5 +207,44 @@ data class Compare(
                     .apply(instance, ::Compare)
             }
         val CODEC_HOLDER: CodecHolder<Compare> = CodecHolder.of(CODEC)
+    }
+}
+
+data class AbsOffset(val input: DensityFunction, val offset: DensityFunction) : DensityFunction {
+    override fun sample(pos: DensityFunction.NoisePos): Double {
+        val result = input.sample(pos)
+        return if (result >= 0) result + offset.sample(pos) else result - offset.sample(pos)
+    }
+
+    override fun fill(densities: DoubleArray, applier: DensityFunction.EachApplier) {
+        input.fill(densities, applier)
+
+        for (i in densities.indices) {
+            if (densities[i] >= 0) densities[i] += offset.sample(applier.at(i))
+            else densities[i] -= offset.sample(applier.at(i))
+        }
+    }
+
+    override fun apply(visitor: DensityFunctionVisitor): DensityFunction {
+        return AbsOffset(input.apply(visitor), offset.apply(visitor))
+    }
+
+    override fun minValue() = input.minValue() - offset.minValue()
+
+    override fun maxValue() = input.maxValue() + offset.maxValue()
+
+    override fun getCodecHolder() = CODEC_HOLDER
+
+    companion object {
+        val CODEC: MapCodec<AbsOffset> =
+            RecordCodecBuilder.mapCodec { instance ->
+                instance
+                    .group(
+                        DensityFunction.FUNCTION_CODEC.fieldOf("input").forGetter(AbsOffset::input),
+                        DensityFunction.FUNCTION_CODEC.fieldOf("offset")
+                            .forGetter(AbsOffset::offset))
+                    .apply(instance, ::AbsOffset)
+            }
+        val CODEC_HOLDER: CodecHolder<AbsOffset> = CodecHolder.of(CODEC)
     }
 }

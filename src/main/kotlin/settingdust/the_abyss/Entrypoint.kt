@@ -15,4 +15,5 @@ fun init() {
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("lerp"), Lerp.CODEC.codec())
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("clamp"), Clamp.CODEC.codec())
     Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("compare"), Compare.CODEC.codec())
+    Registry.register(Registries.DENSITY_FUNCTION_TYPE, TheAbyss.id("abs_offset"), AbsOffset.CODEC.codec())
 }

@@ -1,11 +1,5 @@
 {
-    "type": "the_abyss:compare",
-    "argument1": "minecraft:overworld/ridges",
-    "argument2": 0,
-    "gte": "the_abyss:oath/ridges/abs_offset",
-    "lt": {
-        "type": "mul",
-        "argument1": -1,
-        "argument2": "the_abyss:oath/ridges/abs_offset"
-    }
+    "type": "the_abyss:abs_offset",
+    "input": "minecraft:overworld/ridges",
+    "offset": "the_abyss:oath/ridges/abs_offset"
 }
