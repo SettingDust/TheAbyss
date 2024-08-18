@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2024-08-18
+### :bug: Bug Fixes
+- [`6b5d3cb`](https://github.com/SettingDust/TheAbyss/commit/6b5d3cb21b20c91cd97015c6516de251ffa1ea7e) - remove the unused DF *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.1.0] - 2024-08-18
 ### :sparkles: New Features
 - [`4303038`](https://github.com/SettingDust/TheAbyss/commit/4303038d698cef143e669880cb1127c0cd9db4ad) - 修改大陆性参数 & 添加山脊性 *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -17,3 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [`7b6d689`](https://github.com/SettingDust/TheAbyss/commit/7b6d68913066f1762f5fe92fa7a77b07b5c3de35) - port to 1.20.1 *(commit by [@SettingDust](https://github.com/SettingDust))*
 
 [0.1.0]: https://github.com/SettingDust/TheAbyss/compare/0.0.0...0.1.0
+[0.1.1]: https://github.com/SettingDust/TheAbyss/compare/0.1.0...0.1.1
