@@ -23,8 +23,6 @@ val name: String by rootProject.properties
 val author: String by rootProject.properties
 val description: String by rootProject.properties
 
-allprojects { apply(plugin = catalog.plugins.fabric.loom.get().pluginId) }
-
 loom { mixin { add("main", "$id.refmap.json") } }
 
 fabricApi { configureDataGeneration() }
@@ -39,11 +37,7 @@ dependencies {
     modImplementation(catalog.fabric.api)
     modImplementation(catalog.fabric.kotlin)
 
-    modRuntimeOnly(catalog.modernfix)
-
-    modImplementation(catalog.worldgen.devtools)
-    modImplementation(catalog.patched)
-    modRuntimeOnly(catalog.worldPreview)
+    modImplementation(catalog.modmenu)
 }
 
 val metadata =

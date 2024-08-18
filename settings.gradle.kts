@@ -1,12 +1,14 @@
-val minecraft = "1.21"
+val minecraft = "1.20.1"
 extra["minecraft"] = minecraft
 
 apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/common.gradle.kts")
 apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/kotlin.gradle.kts")
 apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/fabric.gradle.kts")
+apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/modmenu.gradle.kts")
 apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/mixin.gradle.kts")
 
 dependencyResolutionManagement.versionCatalogs.named("catalog") {
+    library("minecraft-fabric-1.21", "com.mojang", "minecraft").version("1.21")
 
     // https://modrinth.com/mod/worldgen-devtools/versions
     library(
@@ -14,7 +16,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
             "maven.modrinth",
             "worldgen-devtools",
         )
-        .version("1.1.0+$minecraft")
+        .version("1.1.0+1.21")
 
     // https://modrinth.com/mod/worldgen-helpers/versions
     library(
@@ -38,7 +40,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
             "maven.modrinth",
             "patched",
         )
-        .version("7.0.0+$minecraft")
+        .version("7.0.0+1.21")
 
     // https://modrinth.com/mod/modernfix/versions
     library(
@@ -46,7 +48,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
             "maven.modrinth",
             "modernfix",
         )
-        .version("5.18.3+mc$minecraft")
+        .version("5.18.3+mc1.21")
 
     // https://modrinth.com/mod/world-preview/versions
     library(
@@ -54,7 +56,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
             "maven.modrinth",
             "world-preview",
         )
-        .version("1.3.0-fabric,$minecraft")
+        .version("1.3.0-fabric,1.21")
 
 
     // https://modrinth.com/mod/distanthorizons/versions
@@ -63,7 +65,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
         "maven.modrinth",
         "distanthorizons",
     )
-        .version("2.1.2-a-$minecraft")
+        .version("2.1.2-a-1.21")
 
 
     // https://modrinth.com/mod/iris/versions
@@ -72,7 +74,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
         "maven.modrinth",
         "iris",
     )
-        .version("1.7.1+$minecraft")
+        .version("1.7.1+1.21")
 
 
     // https://modrinth.com/mod/sodium/versions
@@ -81,7 +83,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
         "maven.modrinth",
         "sodium",
     )
-        .version("mc$minecraft-0.5.9")
+        .version("mc1.21-0.5.9")
 
 
     // https://modrinth.com/mod/indium/versions
@@ -90,9 +92,12 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
         "maven.modrinth",
         "indium",
     )
-        .version("1.0.33+mc$minecraft")
+        .version("1.0.33+mc1.21")
 }
 
 plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0" }
 
 rootProject.name = "TheAbyss"
+
+include("versions")
+include("versions:1.21")

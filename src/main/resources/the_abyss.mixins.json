@@ -8,7 +8,6 @@
         "NoiseChunkGeneratorMixin"
     ],
     "client": [
-        "CreateWorldScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1

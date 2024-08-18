@@ -30,6 +30,6 @@
         ]
     },
     "mixins": [
-        "$id.mixins.json"
+        "${id}.mixins.json"
     ]
 }
