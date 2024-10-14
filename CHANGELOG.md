@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2024-10-14
+### :bug: Bug Fixes
+- [`7030cb1`](https://github.com/SettingDust/TheAbyss/commit/7030cb10ea45ec8e7eff709b2533abce6d8b64d3) - use service for mixin squared to work on connector *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.1.2] - 2024-10-14
 ### :sparkles: New Features
 - [`091d014`](https://github.com/SettingDust/TheAbyss/commit/091d014494af61d75436af131f024ca806634a8f) - try to optimize the compare *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -30,3 +35,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.0]: https://github.com/SettingDust/TheAbyss/compare/0.0.0...0.1.0
 [0.1.1]: https://github.com/SettingDust/TheAbyss/compare/0.1.0...0.1.1
 [0.1.2]: https://github.com/SettingDust/TheAbyss/compare/0.1.1...0.1.2
+[0.2.0]: https://github.com/SettingDust/TheAbyss/compare/0.1.2...0.2.0
