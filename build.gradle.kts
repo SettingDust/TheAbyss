@@ -38,6 +38,17 @@ dependencies {
     modImplementation(catalog.fabric.kotlin)
 
     modImplementation(catalog.modmenu)
+    modImplementation("maven.modrinth:tectonic:2.3.5b")
+    modRuntimeOnly("maven.modrinth:formations-overworld:1.0.4-1.20.1")
+    modRuntimeOnly("maven.modrinth:formations:1.0.2-fabric-mc1.20")
+    modRuntimeOnly("maven.modrinth:supermartijn642s-core-lib:1.1.17-fabric-mc1.20.1")
+    modRuntimeOnly("maven.modrinth:supermartijn642s-config-lib:1.1.8a-fabric-mc1.20.1")
+
+    catalog.mixinsquared.fabric.let {
+        implementation(it)
+        annotationProcessor(it)
+        include(it)
+    }
 }
 
 val metadata =
