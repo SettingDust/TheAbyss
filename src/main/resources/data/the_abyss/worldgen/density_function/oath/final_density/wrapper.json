@@ -1,5 +1,7 @@
 {
   "type": "mul",
   "argument1": "the_abyss:oath/abyss_portal_scale",
-  "argument2": "lithostitched:wrapped_marker"
+  "argument2": {
+    "type": "lithostitched:wrapped_marker"
+  }
 }
