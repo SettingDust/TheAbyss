@@ -40,8 +40,8 @@ jobs:
 
           # Only include this section if you wish to publish
           # your assets on CurseForge.
-#          curseforge-id: 890349
-#          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          #          curseforge-id: 890349
+          #          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
@@ -58,6 +58,7 @@ jobs:
 
           dependencies: |
             fabric-language-kotlin
+            tectonic
 
           java: |
             17
