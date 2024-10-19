@@ -1,0 +1,6 @@
+{
+    "type": "lithostitched:wrap_noise_router",
+    "dimension": "minecraft:overworld",
+    "target": "initial_density_without_jaggedness",
+    "wrapper_function": "the_abyss:oath/initial_density_without_jaggedness/wrapper"
+}

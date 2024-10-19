@@ -1,0 +1,6 @@
+{
+    "type": "lithostitched:wrap_noise_router",
+    "dimension": "minecraft:overworld",
+    "target": "fluid_level_floodedness",
+    "wrapper_function": "the_abyss:oath/fluid_level_floodedness/wrapper"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "add",
+  "argument1": "the_abyss:oath/continents/offset",
+  "argument2": {
+    "type": "mul",
+    "argument1": {
+      "type": "lithostitched:wrapped_marker"
+    },
+    "argument2": "the_abyss:oath/continents/scale"
+  }
+}

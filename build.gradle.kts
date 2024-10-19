@@ -44,6 +44,8 @@ dependencies {
     modRuntimeOnly("maven.modrinth:supermartijn642s-core-lib:1.1.17-fabric-mc1.20.1")
     modRuntimeOnly("maven.modrinth:supermartijn642s-config-lib:1.1.8a-fabric-mc1.20.1")
 
+    modImplementation("maven.modrinth:lithostitched:1.3.1b-fabric")
+
     catalog.mixinsquared.fabric.let {
         implementation(it)
         annotationProcessor(it)

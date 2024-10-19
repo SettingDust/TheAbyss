@@ -1,0 +1,6 @@
+{
+    "type": "lithostitched:wrap_noise_router",
+    "dimension": "minecraft:overworld",
+    "target": "final_density",
+    "wrapper_function": "the_abyss:oath/final_density/wrapper"
+}

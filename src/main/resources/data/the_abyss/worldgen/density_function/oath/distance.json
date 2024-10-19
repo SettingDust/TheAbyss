@@ -1,7 +1,7 @@
 {
-  "type": "cache_2d",
+  "type": "minecraft:flat_cache",
   "argument": {
     "type": "the_abyss:distance",
-    "max": 5000
+    "max": 500
   }
 }

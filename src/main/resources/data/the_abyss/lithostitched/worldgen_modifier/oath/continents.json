@@ -1,0 +1,5 @@
+{
+    "type": "lithostitched:wrap_density_function",
+    "target_function": "minecraft:overworld/continents",
+    "wrapper_function": "the_abyss:oath/continents/wrapper"
+}

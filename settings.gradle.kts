@@ -97,7 +97,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
 
 plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0" }
 
-rootProject.name = "TheAbyss"
+    rootProject.name = "TheAbyss"
 
 include("versions")
 include("versions:1.21")

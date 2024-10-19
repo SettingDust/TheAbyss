@@ -1,9 +1,0 @@
-{
-  "type": "add",
-  "argument1": "the_abyss:oath/ridges/offset",
-  "argument2": {
-    "type": "mul",
-    "argument1": "minecraft:overworld/ridges",
-    "argument2": "the_abyss:oath/ridges/scale"
-  }
-}

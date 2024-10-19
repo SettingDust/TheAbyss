@@ -47,7 +47,7 @@ data class Distance(val max: Double, val min: Double = 0.0) : DensityFunction.Ba
                             .forGetter(Distance::min))
                     .apply(instance, ::Distance)
             }
-        private val CODEC_HOLDER: CodecHolder<Distance> = CodecHolder.of(CODEC)
+        val CODEC_HOLDER: CodecHolder<Distance> = CodecHolder.of(CODEC)
     }
 }
 
@@ -103,7 +103,7 @@ data class Lerp(
                         DensityFunction.FUNCTION_CODEC.fieldOf("alpha").forGetter(Lerp::alpha))
                     .apply(instance, ::Lerp)
             }
-        private val CODEC_HOLDER: CodecHolder<out DensityFunction> = CodecHolder.of(CODEC)
+        val CODEC_HOLDER: CodecHolder<out DensityFunction> = CodecHolder.of(CODEC)
     }
 }
 
