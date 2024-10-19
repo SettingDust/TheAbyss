@@ -1,0 +1,9 @@
+{
+    "predicate": {
+        "type": "lithostitched:mod_loaded",
+        "mod_id": "tectonic"
+    },
+    "type": "lithostitched:wrap_density_function",
+    "target_function": "minecraft:overworld/noise_router/ridges",
+    "wrapper_function": "the_abyss:oath/ridges/wrapper"
+}

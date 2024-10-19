@@ -1,0 +1,9 @@
+{
+    "predicate": {
+        "type": "lithostitched:mod_loaded",
+        "mod_id": "tectonic"
+    },
+    "type": "lithostitched:wrap_density_function",
+    "target_function": "minecraft:overworld/noise_router/initial_density_without_jaggedness",
+    "wrapper_function": "the_abyss:oath/initial_density_without_jaggedness/wrapper"
+}
