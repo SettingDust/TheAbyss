@@ -9,7 +9,7 @@ apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/mixin.grad
 
 dependencyResolutionManagement.versionCatalogs.named("catalog") {
     library("minecraft-fabric-1.21", "com.mojang", "minecraft").version("1.21")
-
+    library("fabric-loader", "net.fabricmc", "fabric-loader").version("0.16.3")
     // https://modrinth.com/mod/worldgen-devtools/versions
     library(
             "worldgen-devtools",
@@ -40,7 +40,7 @@ dependencyResolutionManagement.versionCatalogs.named("catalog") {
             "maven.modrinth",
             "patched",
         )
-        .version("7.0.0+1.21")
+        .version("3.4.1+$minecraft-fabric")
 
     // https://modrinth.com/mod/modernfix/versions
     library(

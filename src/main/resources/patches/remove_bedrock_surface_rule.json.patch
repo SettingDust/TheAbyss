@@ -1,0 +1,19 @@
+[
+    {
+        "op": "find",
+        "path": "/surface_rule/sequence",
+        "multi": true,
+        "test": [
+            {
+                "path": "/then_run/result_state/Name",
+                "value": "minecraft:bedrock"
+            }
+        ],
+        "then": [
+            {
+                "op": "remove",
+                "path": ""
+            }
+        ]
+    }
+]

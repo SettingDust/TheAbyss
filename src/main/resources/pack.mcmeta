@@ -2,5 +2,22 @@
     "pack": {
         "description": "The Abyss data pack",
         "pack_format": 41
+    },
+    "patched": {
+        "format_version": 1,
+        "patch_targets": [
+            {
+                "pack_type": "server_data",
+                "patch": "remove_bedrock_surface_rule",
+                "targets": [
+                    {
+                        "namespace": ["minecraft"],
+                        "path": [
+                            "worldgen/noise_settings/overworld.json"
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 }

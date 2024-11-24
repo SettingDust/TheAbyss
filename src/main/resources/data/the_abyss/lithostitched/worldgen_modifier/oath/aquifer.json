@@ -1,0 +1,5 @@
+{
+    "type": "the_abyss:wrap_aquifer",
+    "dimension": "minecraft:overworld",
+    "wrapper": "the_abyss:oath/aquifer/wrapper"
+}

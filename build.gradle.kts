@@ -38,13 +38,23 @@ dependencies {
     modImplementation(catalog.fabric.kotlin)
 
     modImplementation(catalog.modmenu)
-    modImplementation("maven.modrinth:tectonic:2.3.5b")
+    modImplementation("maven.modrinth:tectonic:2.4.1b")
     modRuntimeOnly("maven.modrinth:formations-overworld:1.0.4-1.20.1")
     modRuntimeOnly("maven.modrinth:formations:1.0.2-fabric-mc1.20")
-    modRuntimeOnly("maven.modrinth:supermartijn642s-core-lib:1.1.17-fabric-mc1.20.1")
+    modRuntimeOnly("maven.modrinth:supermartijn642s-core-lib:1.1.17a-fabric-mc1.20.1")
     modRuntimeOnly("maven.modrinth:supermartijn642s-config-lib:1.1.8a-fabric-mc1.20.1")
 
-    modImplementation("maven.modrinth:lithostitched:1.3.1b-fabric")
+    modImplementation("maven.modrinth:lithostitched:1.3.8-fabric,1.20.1")
+
+    modRuntimeOnly("maven.modrinth:world-preview:1.3.1-fabric")
+    modRuntimeOnly("maven.modrinth:more-profiling:0.15.0")
+
+    modImplementation(catalog.patched)
+
+    "com.github.ben-manes.caffeine:caffeine:3.1.8".let {
+        implementation(it)
+        include(it)
+    }
 
     catalog.mixinsquared.fabric.let {
         implementation(it)
