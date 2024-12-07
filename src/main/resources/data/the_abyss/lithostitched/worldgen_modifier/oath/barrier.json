@@ -1,6 +1,0 @@
-{
-    "type": "lithostitched:wrap_noise_router",
-    "dimension": "minecraft:overworld",
-    "target": "barrier",
-    "wrapper_function": "the_abyss:oath/barrier/wrapper"
-}

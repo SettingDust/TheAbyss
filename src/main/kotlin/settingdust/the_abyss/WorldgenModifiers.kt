@@ -52,13 +52,11 @@ data class WrapAquiferModifier(
             if (modifiers.isNotEmpty()) {
                 val fluidLevelSampler = (this as NoiseChunkGeneratorAccessor).fluidLevelSampler
 
-                val aquiferDensityFunction by lazy { AquiferDensityFunction(fluidLevelSampler.get()) }
-                val function by lazy {
-                    modifiers.fold<DensityFunction, DensityFunction>(
-                        aquiferDensityFunction,
-                        DensityFunctionWrapper::wrap
-                    )
-                }
+                val aquiferDensityFunction = AquiferDensityFunction(fluidLevelSampler.get())
+                val function =
+                    modifiers.fold<DensityFunction, DensityFunction>(aquiferDensityFunction) { acc, modifier ->
+                        DensityFunctionWrapper.wrap(acc, modifier)
+                    }
 
                 (this as NoiseChunkGeneratorAccessor).fluidLevelSampler = Suppliers.memoize {
                     AquiferSampler.FluidLevelSampler { x, y, z ->

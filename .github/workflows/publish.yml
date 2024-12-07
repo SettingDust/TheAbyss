@@ -57,8 +57,9 @@ jobs:
           game-version-filter: releases
 
           dependencies: |
+            patched
+            lithostitched
             fabric-language-kotlin
-            tectonic
 
           java: |
             17

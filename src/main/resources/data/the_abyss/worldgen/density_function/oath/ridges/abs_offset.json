@@ -6,22 +6,25 @@
             "coordinate": "the_abyss:oath/distance",
             "points": [
                 {
+                    "_comment": "valleys -1 ~ -0.85",
                     "location": 0.2,
-                    "value": 0.05,
+                    "value": 0,
                     "derivative": 0
                 },
                 {
+                    "_comment": "high to peak 0.2 ~ 1",
                     "location": 0.3,
-                    "value": 0.666666,
+                    "value": 0.66,
+                    "derivative": 0
+                },
+                {
+                    "_comment": "valleys to mid -1 ~ 0.2",
+                    "location": 0.4,
+                    "value": 0.2,
                     "derivative": 0
                 },
                 {
                     "location": 0.48,
-                    "value": 0.05,
-                    "derivative": 0
-                },
-                {
-                    "location": 0.6,
                     "value": 0,
                     "derivative": 0
                 }

@@ -6,7 +6,12 @@
       {
         "location": 0.08,
         "value": -3,
-        "derivative": 0
+        "derivative": 32
+      },
+      {
+        "location": 0.18,
+        "value": 0,
+        "derivative": 3
       },
       {
         "location": 0.2,

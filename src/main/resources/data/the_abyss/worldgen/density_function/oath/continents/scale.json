@@ -4,23 +4,27 @@
     "coordinate": "the_abyss:oath/distance",
     "points": [
       {
+        "_comment": "mid to far 0.1 ~ 0.5",
         "location": 0,
-        "value": 0.485,
+        "value": 0.2,
         "derivative": 0
       },
       {
-        "location": 0.42,
-        "value": 0.11,
+        "_comment": "mid to far 0 ~ 0.6",
+        "location": 0.3,
+        "value": 0.4,
         "derivative": 0
       },
       {
-        "location": 0.48,
-        "value": 0.3,
+        "_comment": "ocean to far -0.4 ~ 0.8",
+        "location": 0.4,
+        "value": 0.6,
         "derivative": 0
       },
       {
+        "_comment": "deep to ocean -1 ~ -0.18",
         "location": 1,
-        "value": 0.28,
+        "value": 0.4,
         "derivative": 0
       }
     ]

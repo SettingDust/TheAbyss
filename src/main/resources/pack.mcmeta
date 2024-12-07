@@ -17,6 +17,18 @@
                         ]
                     }
                 ]
+            },
+            {
+                "pack_type": "server_data",
+                "patch": "remove_deepslate_surface_rule",
+                "targets": [
+                    {
+                        "namespace": ["minecraft"],
+                        "path": [
+                            "worldgen/noise_settings/overworld.json"
+                        ]
+                    }
+                ]
             }
         ]
     }
