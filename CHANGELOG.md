@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2025-02-13
+### :bug: Bug Fixes
+- [`aac54de`](https://github.com/SettingDust/TheAbyss/commit/aac54de4d07b1a6f5dbd8371384c06c758db77ac) - finally fix the bumpy ocean *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.4.1] - 2025-01-26
 ### :bug: Bug Fixes
 - [`e159311`](https://github.com/SettingDust/TheAbyss/commit/e15931129b3ffe9262fd972a47c9c11282d7c73b) - remove tectonic relating files *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -66,3 +71,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.3.0]: https://github.com/SettingDust/TheAbyss/compare/0.2.1...0.3.0
 [0.4.0]: https://github.com/SettingDust/TheAbyss/compare/0.3.0...0.4.0
 [0.4.1]: https://github.com/SettingDust/TheAbyss/compare/0.4.0...0.4.1
+[0.4.2]: https://github.com/SettingDust/TheAbyss/compare/0.4.1...0.4.2
