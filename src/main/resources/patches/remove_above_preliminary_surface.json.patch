@@ -11,9 +11,14 @@
         ],
         "then": [
             {
-                "op": "move",
-                "from": "/then_run",
-                "path": "/surface_rule/sequence"
+                "op": "replace",
+                "path": "/if_true",
+                "value": {
+                    "type": "not",
+                    "invert": {
+                        "type": "hole"
+                    }
+                }
             }
         ]
     }
