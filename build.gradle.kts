@@ -11,7 +11,7 @@ plugins {
     alias(catalog.plugins.explosion)
 }
 
-apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/gradle_issue_15754.gradle.kts")
+    apply("https://github.com/SettingDust/MinecraftGradleScripts/raw/main/gradle_issue_15754.gradle.kts")
 
 group = "settingdust.the_abyss"
 
@@ -44,7 +44,7 @@ dependencies {
     modRuntimeOnly("maven.modrinth:supermartijn642s-core-lib:1.1.17a-fabric-mc1.20.1")
     modRuntimeOnly("maven.modrinth:supermartijn642s-config-lib:1.1.8a-fabric-mc1.20.1")
 
-    modImplementation("maven.modrinth:lithostitched:1.3.10-fabric,1.20.1")
+    modImplementation("maven.modrinth:lithostitched:1.4.2-fabric,1.20.1")
 
     modRuntimeOnly("maven.modrinth:world-preview:1.3.1-fabric")
     modRuntimeOnly("maven.modrinth:more-profiling:0.15.0")

@@ -29,6 +29,18 @@
                         ]
                     }
                 ]
+            },
+            {
+                "pack_type": "server_data",
+                "patch": "remove_above_preliminary_surface",
+                "targets": [
+                    {
+                        "namespace": ["minecraft"],
+                        "path": [
+                            "worldgen/noise_settings/overworld.json"
+                        ]
+                    }
+                ]
             }
         ]
     }

@@ -1,0 +1,20 @@
+[
+    {
+        "op": "find",
+        "path": "/surface_rule/sequence",
+        "multi": true,
+        "test": [
+            {
+                "path": "/if_true/type",
+                "value": "minecraft:above_preliminary_surface"
+            }
+        ],
+        "then": [
+            {
+                "op": "move",
+                "from": "/then_run",
+                "path": "/surface_rule/sequence"
+            }
+        ]
+    }
+]
