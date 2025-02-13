@@ -40,8 +40,6 @@ data class WrapAquiferModifier(
 
         val CODEC = MAP_CODEC.codec()
 
-        private val fluidLevel = ThreadLocal<AquiferSampler.FluidLevel>()
-
         fun NoiseChunkGenerator.wrapAquifer(world: ServerWorld) {
             val registryManager = world.registryManager
             val modifiers =
@@ -61,8 +59,8 @@ data class WrapAquiferModifier(
                 (this as NoiseChunkGeneratorAccessor).fluidLevelSampler = Suppliers.memoize {
                     AquiferSampler.FluidLevelSampler { x, y, z ->
                         val value = function.sample(DensityFunction.UnblendedNoisePos(x, y, z)).toInt()
-                        (fluidLevel.get() as FluidLevelAccessor).y = value
-                        fluidLevel.get()
+                        (AquiferDensityFunction.currentFluidLevel.get() as FluidLevelAccessor).y = value
+                        AquiferDensityFunction.currentFluidLevel.get()
                     }
                 }
             }
@@ -85,11 +83,13 @@ data class WrapAquiferModifier(
                 Codec.unit(AquiferDensityFunction { _, _, _ -> AquiferSampler.FluidLevel(0, Blocks.AIR.defaultState) })
 
             val CODEC_HOLDER: CodecHolder<out DensityFunction> = CodecHolder.of(CODEC)
+
+            val currentFluidLevel = ThreadLocal<AquiferSampler.FluidLevel>()
         }
 
         private fun apply(pos: DensityFunction.NoisePos): Double {
             val fluidLevel = sampler.getFluidLevel(pos.blockX(), pos.blockY(), pos.blockZ())
-            WrapAquiferModifier.Companion.fluidLevel.set(fluidLevel)
+            currentFluidLevel.set(fluidLevel)
             val value = (fluidLevel as FluidLevelAccessor).y.toDouble()
             return value
         }
