@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2025-02-13
+### :bug: Bug Fixes
+- [`242c3e6`](https://github.com/SettingDust/TheAbyss/commit/242c3e650bbc3f91be04e89c173a47b18c663488) - correct the distance to 5000 *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+### :wrench: Chores
+- [`2ae4e17`](https://github.com/SettingDust/TheAbyss/commit/2ae4e1700b9b59867427d676882d90df64fad3ba) - move the fluid level var to function *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.4.2] - 2025-02-13
 ### :bug: Bug Fixes
 - [`aac54de`](https://github.com/SettingDust/TheAbyss/commit/aac54de4d07b1a6f5dbd8371384c06c758db77ac) - finally fix the bumpy ocean *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -72,3 +80,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.4.0]: https://github.com/SettingDust/TheAbyss/compare/0.3.0...0.4.0
 [0.4.1]: https://github.com/SettingDust/TheAbyss/compare/0.4.0...0.4.1
 [0.4.2]: https://github.com/SettingDust/TheAbyss/compare/0.4.1...0.4.2
+[0.4.3]: https://github.com/SettingDust/TheAbyss/compare/0.4.2...0.4.3
