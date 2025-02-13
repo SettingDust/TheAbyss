@@ -59,8 +59,9 @@ data class WrapAquiferModifier(
                 (this as NoiseChunkGeneratorAccessor).fluidLevelSampler = Suppliers.memoize {
                     AquiferSampler.FluidLevelSampler { x, y, z ->
                         val value = function.sample(DensityFunction.UnblendedNoisePos(x, y, z)).toInt()
-                        (AquiferDensityFunction.currentFluidLevel.get() as FluidLevelAccessor).y = value
-                        AquiferDensityFunction.currentFluidLevel.get()
+                        val fluidLevel = AquiferDensityFunction.currentFluidLevel.get()
+                        (fluidLevel as FluidLevelAccessor).y = value
+                        fluidLevel
                     }
                 }
             }
