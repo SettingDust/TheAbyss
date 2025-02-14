@@ -4,14 +4,9 @@
     "coordinate": "the_abyss:oath/distance",
     "points": [
       {
-        "location": 0.08,
+        "location": 0.16,
         "value": -3,
-        "derivative": 32
-      },
-      {
-        "location": 0.18,
-        "value": 0,
-        "derivative": 3
+        "derivative": 90
       },
       {
         "location": 0.2,
