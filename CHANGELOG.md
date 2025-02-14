@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.5] - 2025-02-14
+### :sparkles: New Features
+- [`39fef33`](https://github.com/SettingDust/TheAbyss/commit/39fef3314da902c49554734248b96f6a4f9c61d3) - steeper abyss portal *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+### :zap: Performance Improvements
+- [`78b9d1c`](https://github.com/SettingDust/TheAbyss/commit/78b9d1cb3c28c5333dc96b9c6e5e1c431484373e) - faster aquifer sampler *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.4.4] - 2025-02-13
 ### :sparkles: New Features
 - [`1c4e395`](https://github.com/SettingDust/TheAbyss/commit/1c4e3955067f12e8ce21481bac961d78979d190b) - surface rule applying on y lower *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -87,3 +95,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.4.2]: https://github.com/SettingDust/TheAbyss/compare/0.4.1...0.4.2
 [0.4.3]: https://github.com/SettingDust/TheAbyss/compare/0.4.2...0.4.3
 [0.4.4]: https://github.com/SettingDust/TheAbyss/compare/0.4.3...0.4.4
+[0.4.5]: https://github.com/SettingDust/TheAbyss/compare/0.4.4...0.4.5
