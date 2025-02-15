@@ -3,13 +3,31 @@ package settingdust.the_abyss
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.dynamic.CodecHolder
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.gen.densityfunction.DensityFunction
 import net.minecraft.world.gen.densityfunction.DensityFunction.DensityFunctionVisitor
+import net.minecraft.world.gen.densityfunction.DensityFunctionTypes
+import kotlin.jvm.optionals.getOrDefault
+import kotlin.jvm.optionals.getOrNull
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sqrt
+
+fun DensityFunction.unwrap(defaultId: RegistryKey<DensityFunction>): Pair<RegistryKey<DensityFunction>, DensityFunction> =
+    if (this is DensityFunctionTypes.RegistryEntryHolder) {
+        function.key.getOrDefault(defaultId) to function.value()
+    } else {
+        defaultId to this
+    }
+
+fun DensityFunction.unwrap(): Pair<RegistryKey<DensityFunction>?, DensityFunction> =
+    if (this is DensityFunctionTypes.RegistryEntryHolder) {
+        function.key.getOrNull() to function.value()
+    } else {
+        null to this
+    }
 
 /**
  * https://gitlab.com/Akjosch/worldgen-helpers/-/blob/master/src/main/java/de/vernideas/mc/worldgen/densityfunction/Distance.java?ref_type=heads
@@ -44,7 +62,8 @@ data class Distance(val max: Double, val min: Double = 0.0) : DensityFunction.Ba
                             .forGetter(Distance::max),
                         Codec.doubleRange(0.0, 1000000000.0)
                             .optionalFieldOf("min", 0.0)
-                            .forGetter(Distance::min))
+                            .forGetter(Distance::min)
+                    )
                     .apply(instance, ::Distance)
             }
         val CODEC_HOLDER: CodecHolder<Distance> = CodecHolder.of(CODEC)
@@ -78,7 +97,7 @@ data class Lerp(
                 else ->
                     densities[i] =
                         (1 - alphas[i]) * value1.sample(applier.at(i)) +
-                            alphas[i] * value2.sample(applier.at(i))
+                                alphas[i] * value2.sample(applier.at(i))
             }
         }
     }
@@ -100,7 +119,8 @@ data class Lerp(
                     .group(
                         DensityFunction.FUNCTION_CODEC.fieldOf("value1").forGetter(Lerp::value1),
                         DensityFunction.FUNCTION_CODEC.fieldOf("value2").forGetter(Lerp::value2),
-                        DensityFunction.FUNCTION_CODEC.fieldOf("alpha").forGetter(Lerp::alpha))
+                        DensityFunction.FUNCTION_CODEC.fieldOf("alpha").forGetter(Lerp::alpha)
+                    )
                     .apply(instance, ::Lerp)
             }
         val CODEC_HOLDER: CodecHolder<out DensityFunction> = CodecHolder.of(CODEC)
@@ -184,7 +204,8 @@ data class Compare(
             argument1.apply(visitor),
             argument2.apply(visitor),
             gte.apply(visitor),
-            lt.apply(visitor))
+            lt.apply(visitor)
+        )
     }
 
     override fun minValue() = lt.minValue()
@@ -203,7 +224,8 @@ data class Compare(
                         DensityFunction.FUNCTION_CODEC.fieldOf("argument2")
                             .forGetter(Compare::argument2),
                         DensityFunction.FUNCTION_CODEC.fieldOf("gte").forGetter(Compare::gte),
-                        DensityFunction.FUNCTION_CODEC.fieldOf("lt").forGetter(Compare::lt))
+                        DensityFunction.FUNCTION_CODEC.fieldOf("lt").forGetter(Compare::lt)
+                    )
                     .apply(instance, ::Compare)
             }
         val CODEC_HOLDER: CodecHolder<Compare> = CodecHolder.of(CODEC)
@@ -242,7 +264,8 @@ data class AbsOffset(val input: DensityFunction, val offset: DensityFunction) : 
                     .group(
                         DensityFunction.FUNCTION_CODEC.fieldOf("input").forGetter(AbsOffset::input),
                         DensityFunction.FUNCTION_CODEC.fieldOf("offset")
-                            .forGetter(AbsOffset::offset))
+                            .forGetter(AbsOffset::offset)
+                    )
                     .apply(instance, ::AbsOffset)
             }
         val CODEC_HOLDER: CodecHolder<AbsOffset> = CodecHolder.of(CODEC)

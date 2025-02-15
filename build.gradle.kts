@@ -49,6 +49,9 @@ dependencies {
     modRuntimeOnly("maven.modrinth:world-preview:1.3.1-fabric")
     modRuntimeOnly("maven.modrinth:more-profiling:0.15.0")
 
+    modRuntimeOnly("maven.modrinth:data-dumper:0.5.4")
+    modRuntimeOnly("me.lucko:fabric-permissions-api:0.3.1")
+
     modImplementation(catalog.patched)
 
 //    "com.github.ben-manes.caffeine:caffeine:3.1.8".let {

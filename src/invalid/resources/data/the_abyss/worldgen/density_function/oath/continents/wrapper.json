@@ -1,7 +1,7 @@
 {
-    "type": "minecraft:flat_cache",
+    "type": "minecraft:interpolated",
     "argument": {
-        "type": "cache_2d",
+        "type": "minecraft:cache_2d",
         "argument": {
             "type": "add",
             "argument1": "the_abyss:oath/continents/offset",

@@ -8,6 +8,7 @@
         "FluidLevelAccessor",
         "NoiseChunkGeneratorAccessor",
         "NoiseChunkGeneratorMixin",
+        "SimpleRegistryAccessor",
         "ThreadedAnvilChunkStorageMixin"
     ],
     "client": [
