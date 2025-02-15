@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-02-15
+### :recycle: Refactors
+- [`717531f`](https://github.com/SettingDust/TheAbyss/commit/717531f01d72fa89f5a612af8ac4bb757d36b0ab) - add "oath_island" world modifier for simply the datapack *(commit by [@SettingDust](https://github.com/SettingDust))*
+- [`6d804a3`](https://github.com/SettingDust/TheAbyss/commit/6d804a37565cf4d0a193e41bc1b7938ce1f9ee69) - add "abyss" world modifier for simply the datapack *(commit by [@SettingDust](https://github.com/SettingDust))*
+
+
 ## [0.4.5] - 2025-02-14
 ### :sparkles: New Features
 - [`39fef33`](https://github.com/SettingDust/TheAbyss/commit/39fef3314da902c49554734248b96f6a4f9c61d3) - steeper abyss portal *(commit by [@SettingDust](https://github.com/SettingDust))*
@@ -96,3 +102,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.4.3]: https://github.com/SettingDust/TheAbyss/compare/0.4.2...0.4.3
 [0.4.4]: https://github.com/SettingDust/TheAbyss/compare/0.4.3...0.4.4
 [0.4.5]: https://github.com/SettingDust/TheAbyss/compare/0.4.4...0.4.5
+[0.5.0]: https://github.com/SettingDust/TheAbyss/compare/0.4.5...0.5.0
