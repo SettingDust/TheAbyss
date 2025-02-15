@@ -16,9 +16,9 @@ import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.entry.RegistryElementCodec
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.Identifier
 import net.minecraft.util.dynamic.CodecHolder
 import net.minecraft.util.math.Spline
 import net.minecraft.world.World
@@ -35,7 +35,7 @@ data class WrapAquiferModifier(
     val modifierPredicate: ModifierPredicate,
     val priority: Int,
     val dimension: RegistryKey<World>,
-    val wrapper: DensityFunction
+    val wrapper: RegistryEntry<DensityFunction>
 ) : Modifier {
     companion object {
         val MAP_CODEC = RecordCodecBuilder.mapCodec { instance ->
@@ -44,7 +44,7 @@ data class WrapAquiferModifier(
                     PriorityBasedModifier.PRIORITY_CODEC.forGetter(WrapAquiferModifier::priority),
                     RegistryKey.createCodec(RegistryKeys.WORLD).fieldOf("dimension")
                         .forGetter(WrapAquiferModifier::dimension),
-                    DensityFunction.FUNCTION_CODEC.fieldOf("wrapper").forGetter(WrapAquiferModifier::wrapper)
+                    DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("wrapper").forGetter(WrapAquiferModifier::wrapper)
                 )
             ).apply(instance, ::WrapAquiferModifier)
         }!!
@@ -57,7 +57,7 @@ data class WrapAquiferModifier(
                 registryManager[LithostitchedRegistryKeys.WORLDGEN_MODIFIER].filterIsInstance<WrapAquiferModifier>()
                     .filter { it.dimension == world.registryKey }
                     .sortedBy { it.priority }
-                    .map { it.wrapper }
+                    .map { it.wrapper.value() }
             if (modifiers.isNotEmpty()) {
                 val fluidLevelSampler = (this as NoiseChunkGeneratorAccessor).fluidLevelSampler
 
@@ -70,7 +70,7 @@ data class WrapAquiferModifier(
                 (this as NoiseChunkGeneratorAccessor).fluidLevelSampler = Suppliers.memoize {
                     AquiferSampler.FluidLevelSampler { x, y, z ->
                         val value = function.sample(DensityFunction.UnblendedNoisePos(x, y, z)).toInt()
-                        val fluidLevel = AquiferDensityFunction.currentFluidLevel.get()
+                        val fluidLevel = fluidLevelSampler.get().getFluidLevel(x, y, z)
                         (fluidLevel as FluidLevelAccessor).y = value
                         fluidLevel
                     }
@@ -125,10 +125,19 @@ data class WrapAquiferModifier(
     }
 }
 
+private fun Registry<DensityFunction>.tryCreateDistance(
+    id: RegistryKey<DensityFunction>,
+    distance: DensityFunction
+) {
+    if (id !in this) {
+        Registry.register(this, id, distance)
+    }
+}
+
 data class OathIslandModifier(
     val modifierPredicate: ModifierPredicate,
     val dimension: RegistryKey<DimensionOptions>,
-    val distance: DensityFunction
+    val distance: RegistryEntry<DensityFunction>,
 ) : Modifier {
     companion object {
         val MAP_CODEC = RecordCodecBuilder.mapCodec { instance ->
@@ -136,7 +145,7 @@ data class OathIslandModifier(
                 instance.group(
                     RegistryKey.createCodec(RegistryKeys.DIMENSION).fieldOf("dimension")
                         .forGetter(OathIslandModifier::dimension),
-                    DensityFunction.FUNCTION_CODEC.fieldOf("distance").forGetter(OathIslandModifier::distance)
+                    DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("distance").forGetter(OathIslandModifier::distance)
                 )
             ).apply(instance, ::OathIslandModifier)
         }!!
@@ -149,15 +158,6 @@ data class OathIslandModifier(
     override fun getPredicate() = modifierPredicate
 
     override fun getPhase() = Modifier.ModifierPhase.ADD
-
-    private fun Registry<DensityFunction>.tryCreateDistance(
-        id: RegistryKey<DensityFunction>,
-        distance: DensityFunction
-    ) {
-        if (id !in this) {
-            Registry.register(this, id, distance)
-        }
-    }
 
     private fun Registry<DensityFunction>.createContinentsWrapper(distance: RegistryEntry<DensityFunction>): RegistryEntry<DensityFunction> {
         val id = RegistryKey.of(key, TheAbyss.id("$prefix/continents"))
@@ -236,25 +236,26 @@ data class OathIslandModifier(
     }
 
     override fun applyModifier(registryAccess: DynamicRegistryManager) {
-        val densityFunctionRegistry = registryAccess.get(RegistryKeys.DENSITY_FUNCTION)
-        val worldModifiersRegistry = registryAccess.get(LithostitchedRegistryKeys.WORLDGEN_MODIFIER)
+        val functionRegistry = registryAccess.get(RegistryKeys.DENSITY_FUNCTION)
+        val modifiersRegistry = registryAccess.get(LithostitchedRegistryKeys.WORLDGEN_MODIFIER)
 
-        (densityFunctionRegistry as SimpleRegistryAccessor).setFrozen(false)
-        (worldModifiersRegistry as SimpleRegistryAccessor).setFrozen(false)
+        (functionRegistry as SimpleRegistryAccessor).setFrozen(false)
+        (modifiersRegistry as SimpleRegistryAccessor).setFrozen(false)
 
-        val (distanceId, distance) = distance.unwrap(
+        val (distanceId, distance) = distance.value().unwrap(
             RegistryKey.of(
-                densityFunctionRegistry.key,
+                functionRegistry.key,
                 TheAbyss.id("$prefix/distance")
             )
         )
-        densityFunctionRegistry.tryCreateDistance(distanceId, distance)
+        functionRegistry.tryCreateDistance(distanceId, distance)
 
-        val continentsWrapper = densityFunctionRegistry.createContinentsWrapper(densityFunctionRegistry.getEntry(distanceId).orElseThrow())
-        worldModifiersRegistry.createContinentsModifier(registryAccess, continentsWrapper)
+        val continentsWrapper =
+            functionRegistry.createContinentsWrapper(functionRegistry.getEntry(distanceId).orElseThrow())
+        modifiersRegistry.createContinentsModifier(registryAccess, continentsWrapper)
 
-        (densityFunctionRegistry as SimpleRegistryAccessor).setFrozen(true)
-        (worldModifiersRegistry as SimpleRegistryAccessor).setFrozen(true)
+        (functionRegistry as SimpleRegistryAccessor).setFrozen(true)
+        (modifiersRegistry as SimpleRegistryAccessor).setFrozen(true)
     }
 
     override fun applyModifier() {
@@ -263,30 +264,147 @@ data class OathIslandModifier(
     override fun codec() = CODEC
 }
 
-data class AbyssifyModifier(
+data class AbyssModifier(
     val modifierPredicate: ModifierPredicate,
-    val priority: Int,
-    val dimension: RegistryKey<World>,
-    val distance: DensityFunction
+    val dimension: RegistryKey<DimensionOptions>,
+    val distance: RegistryEntry<DensityFunction>,
+    val offset: RegistryEntry<DensityFunction>
 ) : Modifier {
     companion object {
         val MAP_CODEC = RecordCodecBuilder.mapCodec { instance ->
             Modifier.addModifierFields(instance).and(
                 instance.group(
-                    PriorityBasedModifier.PRIORITY_CODEC.forGetter(AbyssifyModifier::priority),
-                    RegistryKey.createCodec(RegistryKeys.WORLD).fieldOf("dimension")
-                        .forGetter(AbyssifyModifier::dimension),
-                    DensityFunction.FUNCTION_CODEC.fieldOf("distance").forGetter(AbyssifyModifier::distance)
+                    RegistryKey.createCodec(RegistryKeys.DIMENSION).fieldOf("dimension")
+                        .forGetter(AbyssModifier::dimension),
+                    DensityFunction.REGISTRY_ENTRY_CODEC.fieldOf("distance").forGetter(AbyssModifier::distance),
+                    RegistryElementCodec.of(RegistryKeys.DENSITY_FUNCTION, DensityFunction.CODEC, false)
+                        .fieldOf("offset").forGetter(AbyssModifier::offset)
                 )
-            ).apply(instance, ::AbyssifyModifier)
+            ).apply(instance, ::AbyssModifier)
         }!!
 
         val CODEC = MAP_CODEC.codec()
     }
 
+    private val prefix = "${dimension.value.namespace}/${dimension.value.path}/abyss"
+
     override fun getPredicate() = modifierPredicate
 
-    override fun getPhase() = Modifier.ModifierPhase.MODIFY
+    override fun getPhase() = Modifier.ModifierPhase.ADD
+
+    private fun Registry<DensityFunction>.createAquiferWrapper(distance: RegistryEntry<DensityFunction>): RegistryEntry<DensityFunction> {
+        val id = RegistryKey.of(key, TheAbyss.id("$prefix/aquifer"))
+        return if (id !in this) {
+            val offset = DensityFunctionTypes.rangeChoice(
+                distance.value(),
+                0.0,
+                1.02,
+                DensityFunctionTypes.constant(-64.0),
+                DensityFunctionTypes.constant(0.0)
+            )
+            val scale = DensityFunctionTypes.rangeChoice(
+                distance.value(),
+                0.0,
+                1.02,
+                DensityFunctionTypes.constant(0.0),
+                DensityFunctionTypes.constant(1.0)
+            )
+
+            getEntry(
+                Registry.register(
+                    this,
+                    id,
+                    DensityFunctionTypes.add(
+                        offset,
+                        DensityFunctionTypes.mul(
+                            scale,
+                            DensityFunctionTypes.RegistryEntryHolder(
+                                RegistryEntry.Direct(WrappedMarkerDensityFunction())
+                            )
+                        )
+                    )
+                )
+            )
+        } else getEntry(id).orElseThrow()
+    }
+
+    private fun Registry<Modifier>.createAquiferModifier(wrapper: RegistryEntry<DensityFunction>) {
+        val id = TheAbyss.id("$prefix/aquifer")
+
+        Registry.register(
+            this,
+            id,
+            WrapAquiferModifier(modifierPredicate, 1000, RegistryKey.of(RegistryKeys.WORLD, dimension.value), wrapper)
+        )
+    }
+
+    private fun Registry<DensityFunction>.createOffsetWrapper(distance: RegistryEntry<DensityFunction>): RegistryEntry<DensityFunction> {
+        val id = RegistryKey.of(key, TheAbyss.id("$prefix/offset"))
+        return if (id !in this) {
+            val distance = DensityFunctionTypes.Spline.DensityFunctionWrapper(distance)
+            val offset = DensityFunctionTypes.spline(
+                Spline.builder(distance)
+                    .add(0.8f, -3.0f, 30f)
+                    .add(1f, 0f, 0f)
+                    .build()
+            )
+            val scale = DensityFunctionTypes.spline(
+                Spline.builder(distance)
+                    .add(0.8f, 0f, 0f)
+                    .add(1f, 1f, 0f)
+                    .build()
+            )
+
+            getEntry(
+                Registry.register(
+                    this,
+                    id,
+                    DensityFunctionTypes.add(
+                        offset,
+                        DensityFunctionTypes.mul(
+                            scale,
+                            DensityFunctionTypes.RegistryEntryHolder(
+                                RegistryEntry.Direct(WrappedMarkerDensityFunction())
+                            )
+                        )
+                    )
+                )
+            )
+        } else getEntry(id).orElseThrow()
+    }
+
+    private fun Registry<Modifier>.createOffsetModifier(wrapper: RegistryEntry<DensityFunction>) {
+        val id = TheAbyss.id("$prefix/offset")
+        Registry.register(this, id, WrapDensityFunctionModifier(modifierPredicate, 1000, offset, wrapper))
+    }
+
+    override fun applyModifier(registryAccess: DynamicRegistryManager) {
+        val functionRegistry = registryAccess.get(RegistryKeys.DENSITY_FUNCTION)
+        val modifiersRegistry = registryAccess.get(LithostitchedRegistryKeys.WORLDGEN_MODIFIER)
+
+        (functionRegistry as SimpleRegistryAccessor).setFrozen(false)
+        (modifiersRegistry as SimpleRegistryAccessor).setFrozen(false)
+
+        val (distanceId, distance) = distance.value().unwrap(
+            RegistryKey.of(
+                functionRegistry.key,
+                TheAbyss.id("$prefix/distance")
+            )
+        )
+        functionRegistry.tryCreateDistance(distanceId, distance)
+
+        val aquiferWrapper =
+            functionRegistry.createAquiferWrapper(functionRegistry.getEntry(distanceId).orElseThrow())
+        modifiersRegistry.createAquiferModifier(aquiferWrapper)
+
+        val offsetWrapper =
+            functionRegistry.createOffsetWrapper(functionRegistry.getEntry(distanceId).orElseThrow())
+        modifiersRegistry.createOffsetModifier(offsetWrapper)
+
+
+        (functionRegistry as SimpleRegistryAccessor).setFrozen(true)
+        (modifiersRegistry as SimpleRegistryAccessor).setFrozen(true)
+    }
 
     override fun applyModifier() {
     }

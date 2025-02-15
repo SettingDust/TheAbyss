@@ -1,0 +1,12 @@
+{
+    "type": "the_abyss:abyss",
+    "dimension": "minecraft:overworld",
+    "distance": {
+        "type": "minecraft:cache_2d",
+        "argument": {
+            "type": "the_abyss:distance",
+            "max": 100
+        }
+    },
+    "offset": "minecraft:overworld/offset"
+}

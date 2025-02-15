@@ -32,9 +32,15 @@ fun init() {
         TheAbyss.id("wrap_aquifer"),
         WrapAquiferModifier.CODEC
     )
+
     Registry.register(
         LithostitchedBuiltInRegistries.MODIFIER_TYPE,
         TheAbyss.id("oath_island"),
         OathIslandModifier.CODEC
+    )
+    Registry.register(
+        LithostitchedBuiltInRegistries.MODIFIER_TYPE,
+        TheAbyss.id("abyss"),
+        AbyssModifier.CODEC
     )
 }

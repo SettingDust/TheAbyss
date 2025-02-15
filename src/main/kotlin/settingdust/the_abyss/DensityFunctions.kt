@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.registry.RegistryKey
 import net.minecraft.util.dynamic.CodecHolder
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.gen.densityfunction.DensityFunction
 import net.minecraft.world.gen.densityfunction.DensityFunction.DensityFunctionVisitor
@@ -35,12 +36,12 @@ fun DensityFunction.unwrap(): Pair<RegistryKey<DensityFunction>?, DensityFunctio
 data class Distance(val max: Double, val min: Double = 0.0) : DensityFunction.Base {
     override fun getCodecHolder() = CODEC_HOLDER
 
-    override fun maxValue() = 1.0
+    override fun maxValue() = 30_000_000 / max
 
     override fun minValue() = 0.0
 
     override fun sample(pos: DensityFunction.NoisePos): Double {
-        val distanceSquared = pos.blockX() * pos.blockX() + pos.blockZ() * pos.blockZ() + 0.0
+        val distanceSquared = (pos.blockX() * pos.blockX() + pos.blockZ() * pos.blockZ()).toDouble()
         val distance = sqrt(distanceSquared)
         return when {
             (min > 0.0 || max <= min) && distance <= min -> 0.0
