@@ -50,7 +50,7 @@ dependencies {
     modRuntimeOnly("maven.modrinth:more-profiling:0.15.0")
 
     modRuntimeOnly("maven.modrinth:data-dumper:0.5.4")
-    modRuntimeOnly("me.lucko:fabric-permissions-api:0.3.1")
+    modRuntimeOnly("me.lucko:fabric-permissions-api:0.3.3")
 
     modImplementation(catalog.patched)
 
